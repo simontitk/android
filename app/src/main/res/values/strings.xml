@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GarbageSorting</string>
+    <string name="list">List all items</string>
 </resources>
