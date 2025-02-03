@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">GarbageSorting</string>
-    <string name="list">List all items</string>
+    <string name="header">Garbage Sorting</string>
+    <string name="where_button_text">Where</string>
+    <string name="item_input_placeholder">Search for items</string>
+    <string name="input_label_text">Where to place item</string>
+    <string name="placeholder_text">" should be placed in: "</string>
 </resources>
