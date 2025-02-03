@@ -1,32 +1,27 @@
 package com.example.garbagesorting;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class ItemsDB {
-    private List<Item> ItemsDB= new ArrayList<>();
+    private final HashMap<String, String> db = new HashMap<String, String>();
 
-    public ItemsDB() { }
-
-    public String listItems() {
-        String r= "";
-        for(Item i: ItemsDB)
-            r= r+"\n Buy " + i.toString();
-        return r;
+    public ItemsDB() {
     }
 
-    // Will be used later
-    public void addItem(String what, String where){
-        ItemsDB.add(new Item(what, where));
+    public void addItem(String what, String where) {
+        db.put(what, where);
+    }
+
+    public String search(String what) {
+        return db.getOrDefault(what, "not found");
     }
 
     public void fillItemsDB() {
-        ItemsDB.add(new Item("coffee", "Irma"));
-        ItemsDB.add(new Item("carrots", "Netto"));
-        ItemsDB.add(new Item("milk", "Netto"));
-        ItemsDB.add(new Item("bread", "bakery"));
-        ItemsDB.add(new Item("butter", "Irma"));
-        ItemsDB.add(new Item("gamer girl bathwater", "Hydro Homies"));
-        ItemsDB.add(new Item("meat", "365"));
+        this.addItem("milk carton", "Food");
+        this.addItem("tin can", "Metal");
+        this.addItem("banana peel", "Food");
+        this.addItem("50g of californium", "Radioactive Waste");
+        this.addItem("water bottle", "Plastic");
+        this.addItem("gamer girl bathwater bottle", "Plastic");
     }
 }
