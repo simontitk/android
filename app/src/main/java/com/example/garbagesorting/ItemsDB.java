@@ -3,9 +3,17 @@ package com.example.garbagesorting;
 import java.util.HashMap;
 
 public class ItemsDB {
+
+    private static ItemsDB sItemsDB;
     private final HashMap<String, String> db = new HashMap<String, String>();
 
     public ItemsDB() {
+        fillItemsDB();
+    }
+
+    public static ItemsDB get() {
+        if (sItemsDB == null) sItemsDB = new ItemsDB();
+        return sItemsDB;
     }
 
     public void addItem(String what, String where) {
@@ -23,5 +31,6 @@ public class ItemsDB {
         this.addItem("50g of californium", "Radioactive Waste");
         this.addItem("water bottle", "Plastic");
         this.addItem("gamer girl bathwater bottle", "Plastic");
+
     }
 }
