@@ -10,4 +10,5 @@
     <string name="what_item">What item? </string>
     <string name="where">Where?</string>
     <string name="empty_toast">Please type something in the what and where fields</string>
+    <string name="replaced_toast">Overwritten container for %s.</string>
 </resources>

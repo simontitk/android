@@ -1,9 +1,8 @@
 package com.example.garbagesorting;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,25 +19,24 @@ public class AddActivity extends AppCompatActivity {
 
         itemsDB = ItemsDB.get();
 
-        TextView newWhat = findViewById(R.id.what_text);
-        TextView newWhere = findViewById(R.id.where_text);
+        EditText whatInput = findViewById(R.id.what_text);
+        EditText whereInput = findViewById(R.id.where_text);
+        Button addNewButton = findViewById(R.id.addNew_button);
 
-        Button addItem = findViewById(R.id.addNew_button);
-        // adding a new thing
-        addItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String whatS = newWhat.getText().toString().trim();
-                String whereS = newWhere.getText().toString().trim();
-                if ((whatS.length() > 0) && (whereS.length() > 0)) {
+        addNewButton.setOnClickListener(v -> {
+            String whatS = whatInput.getText().toString().trim();
+            String whereS = whereInput.getText().toString().trim();
+            if ((!whatS.isBlank()) && (!whereS.isBlank())) {
+                if (itemsDB.search(whatS).equals("not found")) {
                     itemsDB.addItem(whatS, whereS);
-                    newWhat.setText("");
-                    newWhere.setText("");
-                } else
-                    Toast.makeText(AddActivity.this, R.string.empty_toast, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(AddActivity.this, getString(R.string.replaced_toast, whatS), Toast.LENGTH_LONG).show();
+                }
+                whatInput.setText("");
+                whereInput.setText("");
+            } else {
+                Toast.makeText(AddActivity.this, R.string.empty_toast, Toast.LENGTH_LONG).show();
             }
         });
-
     }
-
 }

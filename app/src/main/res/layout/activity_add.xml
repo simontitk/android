@@ -3,76 +3,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <!-- Top header -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
         android:layout_marginBottom="5dp"
         android:background="@color/teal"
+        android:text="@string/header"
         android:textColor="@color/white"
-        android:text="@string/header" />
+        android:textSize="30sp" />
 
-    <!-- What new item -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:textColor="@color/black"
             android:text="@string/what_item"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
         <EditText
             android:id="@+id/what_text"
-            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <!-- Where to buy new item -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:textColor="@color/black"
             android:text="@string/where"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
         <EditText
             android:id="@+id/where_text"
-            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
             android:layout_weight="1"
-            android:layout_marginBottom="5dp" />
+            android:background="@color/white"
+            android:textColor="@color/black" />
     </LinearLayout>
 
-    <!-- Button to add new item-->
     <Button
         android:id="@+id/addNew_button"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/button_size"
-        android:textSize="@dimen/text_size"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/heading_create"
-        android:layout_marginBottom="5dp" />
+        android:textSize="@dimen/text_size" />
 
 </LinearLayout>
