@@ -5,4 +5,10 @@
     <string name="item_input_placeholder">Search for items</string>
     <string name="input_label_text">Where to place item</string>
     <string name="placeholder_text">" should be placed in: "</string>
+    <string name="add_button_text">"ADD A NEW ITEM"</string>
+    <string name="heading_create">ADD NEW ITEM</string>
+    <string name="what_item">What item? </string>
+    <string name="where">Where?</string>
+    <string name="empty_toast">Please type something in the what and where fields</string>
+    <string name="replaced_toast">Overwritten container for %s.</string>
 </resources>
