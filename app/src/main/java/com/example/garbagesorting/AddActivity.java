@@ -27,11 +27,10 @@ public class AddActivity extends AppCompatActivity {
             String whatS = whatInput.getText().toString().trim();
             String whereS = whereInput.getText().toString().trim();
             if ((!whatS.isBlank()) && (!whereS.isBlank())) {
-                if (itemsDB.search(whatS).equals("not found")) {
-                    itemsDB.addItem(whatS, whereS);
-                } else {
+                if (!itemsDB.search(whatS).equals("not found")) {
                     Toast.makeText(AddActivity.this, getString(R.string.replaced_toast, whatS), Toast.LENGTH_LONG).show();
                 }
+                itemsDB.addItem(whatS, whereS);
                 whatInput.setText("");
                 whereInput.setText("");
             } else {
