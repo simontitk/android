@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ItemsDB.setContext(MainActivity.this);
         itemsDB = ItemsDB.get();
 
         EditText itemInput = findViewById(R.id.item_input);

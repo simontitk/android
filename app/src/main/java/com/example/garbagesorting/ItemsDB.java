@@ -1,19 +1,31 @@
 package com.example.garbagesorting;
 
+import android.content.Context;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 public class ItemsDB {
-
-    private static ItemsDB sItemsDB;
+    private static ItemsDB itemsDB;
+    private static Context context;
     private final HashMap<String, String> db = new HashMap<String, String>();
 
-    public ItemsDB() {
-        fillItemsDB();
+    private ItemsDB() {
+        if (context == null) {
+            throw new IllegalStateException("context must be set first");
+        }
+        fillItemsDB(context, "items.txt");
+    }
+
+    public static void setContext(Context context) {
+        ItemsDB.context = context;
     }
 
     public static ItemsDB get() {
-        if (sItemsDB == null) sItemsDB = new ItemsDB();
-        return sItemsDB;
+        if (itemsDB == null) itemsDB = new ItemsDB();
+        return itemsDB;
     }
 
     public void addItem(String what, String where) {
@@ -24,13 +36,17 @@ public class ItemsDB {
         return db.getOrDefault(what, "not found");
     }
 
-    public void fillItemsDB() {
-        this.addItem("milk carton", "Food");
-        this.addItem("tin can", "Metal");
-        this.addItem("banana peel", "Food");
-        this.addItem("50g of californium", "Radioactive Waste");
-        this.addItem("water bottle", "Plastic");
-        this.addItem("gamer girl bathwater bottle", "Plastic");
-
+    private void fillItemsDB(Context context, String fileName) {
+        try {
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(context.getAssets().open(fileName)));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] itemWhatWhere = line.split(", ");
+                this.addItem(itemWhatWhere[0], itemWhatWhere[1]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
