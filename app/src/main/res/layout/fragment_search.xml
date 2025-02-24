@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+    
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="@string/input_label_text" />
+
+    <!-- Input text field to search -->
+    <EditText
+        android:id="@+id/item_input"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/text_container_height"
+        android:layout_marginBottom="5dp"
+        android:autofillHints="autofill"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:hint="@string/item_input_placeholder"
+        android:inputType="text" />
+
+    <!-- button that searches -->
+    <Button
+        android:id="@+id/where_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@color/chrome_green"
+        android:text="@string/where_button_text"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+
+    <!-- add a new item. opens new window -->
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@color/chrome_green"
+        android:text="@string/add_button_text" />
+
+</LinearLayout>

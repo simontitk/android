@@ -16,13 +16,17 @@ class ItemsDB private constructor() {
         private var itemsDB: ItemsDB? = null
         private var context: Context? = null
 
-        fun setContext(context: Context?) {
+        fun setContext(context: Context) {
             ItemsDB.context = context
         }
 
         fun get(): ItemsDB {
             return itemsDB ?: ItemsDB().also { itemsDB = it }
         }
+    }
+
+    fun listItems(separator: String): List<String> {
+        return db.entries.map { "${it.key} ${separator} ${it.value}" }
     }
 
     fun addItem(what: String, where: String) {
