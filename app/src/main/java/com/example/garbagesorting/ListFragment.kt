@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import java.util.Observable
+import java.util.Observer
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), Observer {
     private lateinit var itemsDB: ItemsDB
+    private lateinit var itemsList: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +20,7 @@ class ListFragment : Fragment() {
         val context = requireContext()
         ItemsDB.setContext(context)
         itemsDB = ItemsDB.get()
+        itemsDB.addObserver(this)
     }
 
     override fun onCreateView(
@@ -25,14 +29,22 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val v: View = inflater.inflate(R.layout.fragment_list, container, false)
-        val itemsList = v.findViewById<TextView>(R.id.items_list)
+        itemsList = v.findViewById<TextView>(R.id.items_list)
         itemsList.movementMethod = ScrollingMovementMethod()
+        addItems()
+        return v
+    }
 
+    private fun addItems() {
+        itemsList.text = ""
         itemsDB.listItems("in")
             .forEach {
                 itemsList.append(it + "\n")
             }
+    }
 
-        return v
+    @Deprecated("Deprecated in Java")
+    override fun update(o: Observable?, arg: Any?) {
+        addItems()
     }
 }

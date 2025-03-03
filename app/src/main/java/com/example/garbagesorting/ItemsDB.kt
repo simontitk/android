@@ -4,8 +4,9 @@ import android.content.Context
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
+import  java.util.Observable
 
-class ItemsDB private constructor() {
+class ItemsDB private constructor() : Observable() {
     private val db = HashMap<String, String>()
 
     init {
@@ -26,11 +27,13 @@ class ItemsDB private constructor() {
     }
 
     fun listItems(separator: String): List<String> {
-        return db.entries.map { "${it.key} ${separator} ${it.value}" }
+        return db.entries.map { "${it.key} $separator ${it.value}" }
     }
 
     fun addItem(what: String, where: String) {
         db[what] = where
+        setChanged()
+        notifyObservers()
     }
 
     fun search(what: String): String {
@@ -44,6 +47,8 @@ class ItemsDB private constructor() {
                 val itemWhatWhere = line.split(", ")
                 this.addItem(itemWhatWhere[0], itemWhatWhere[1])
             }
+            setChanged()
+            notifyObservers()
         } catch (e: IOException) {
             e.printStackTrace()
         }
