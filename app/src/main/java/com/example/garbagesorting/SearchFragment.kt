@@ -8,41 +8,28 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import java.util.Locale
+import androidx.lifecycle.ViewModelProvider
 
 
 class SearchFragment : Fragment() {
-    private lateinit var itemsDB: ItemsDB
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val context = requireContext()
-        ItemsDB.setContext(context)
-        itemsDB = ItemsDB.get()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
         val v: View = inflater.inflate(R.layout.fragment_search, container, false)
+        val viewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
 
         val itemInput = v.findViewById<EditText>(R.id.item_input)
 
         val whereButton = v.findViewById<Button>(R.id.where_button)
-        whereButton.setOnClickListener { v: View? ->
-            val item =
-                itemInput.text.toString().trim().lowercase(Locale.getDefault())
-            val placeholder = getString(R.string.placeholder_text)
-            if (item.contains(placeholder)) {
-                itemInput.setText("")
-            } else if (!item.isBlank()) {
-                itemInput.setText(
-                    item + placeholder + itemsDB.search(
-                        item
-                    )
-                )
+        whereButton.setOnClickListener {
+            activity?.let { fragmentActivity ->
+                val item = itemInput.text.toString()
+                val result = viewModel.searchItem(item)
+                itemInput.setText(result)
             }
         }
 
