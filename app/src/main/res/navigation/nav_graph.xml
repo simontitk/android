@@ -11,11 +11,19 @@
         <action
             android:id="@+id/action_main_to_add"
             app:destination="@id/add_fragment" />
+        <action
+            android:id="@+id/action_main_to_delete"
+            app:destination="@id/delete_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/add_fragment"
         android:label="Add Fragment"
         android:name="com.example.garbagesorting.AddFragment" />
+
+    <fragment
+        android:id="@+id/delete_fragment"
+        android:label="Delete Fragment"
+        android:name="com.example.garbagesorting.DeleteFragment" />
 
 </navigation>

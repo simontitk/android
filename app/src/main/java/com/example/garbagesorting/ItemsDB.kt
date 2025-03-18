@@ -37,6 +37,10 @@ class ItemsDB private constructor() {
         return db.getOrDefault(what, "not found")
     }
 
+    fun removeItem(item: String) {
+        db.remove(item)
+    }
+
     private fun fillItemsDB(context: Context, fileName: String) {
         try {
             val reader = BufferedReader(InputStreamReader(context.assets.open(fileName)))

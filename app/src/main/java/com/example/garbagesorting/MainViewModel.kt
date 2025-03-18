@@ -25,4 +25,19 @@ class MainViewModel : ViewModel() {
             return ""
         }
     }
+
+    fun addItem(item: String, container: String) {
+        itemsDB.addItem(item.trim().lowercase(), container.trim().lowercase())
+        update()
+    }
+
+    fun deleteItem(item: String): String {
+        itemsDB.removeItem(item.trim().lowercase())
+        update()
+        return ""
+    }
+
+    private fun update() {
+        _itemsList.value = itemsDB.listItems(" in ").joinToString("\n")
+    }
 }
