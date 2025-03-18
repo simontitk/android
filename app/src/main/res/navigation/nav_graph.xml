@@ -4,12 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:startDestination="@id/main_fragment">
 
-    <fragment android:id="@+id/main_fragment">
+    <fragment
+        android:id="@+id/main_fragment"
+        android:label="Main Fragment"
+        android:name="com.example.garbagesorting.MainFragment">
         <action
             android:id="@+id/action_main_to_add"
             app:destination="@id/add_fragment" />
     </fragment>
 
-    <fragment android:id="@+id/add_fragment" />
-    
+    <fragment
+        android:id="@+id/add_fragment"
+        android:label="Add Fragment"
+        android:name="com.example.garbagesorting.AddFragment" />
+
 </navigation>

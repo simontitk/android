@@ -1,4 +1,5 @@
 package com.example.garbagesorting
 
-class AddFragment {
-}
+import androidx.fragment.app.Fragment
+
+class AddFragment : Fragment()
